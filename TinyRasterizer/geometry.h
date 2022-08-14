@@ -37,10 +37,21 @@ template <class t> struct Vec3 {
 	template <class > friend std::ostream& operator<<(std::ostream& s, Vec3<t>& v);
 };
 
+template <class t> struct Point {
+	union {
+		struct { t x, y; };
+		t raw[2];
+	};
+	Point () :x (0), y (0) {}
+	Point (t _x, t _y) : x (_x), y (_y) {}
+};
+
 typedef Vec2<float> Vec2f;
 typedef Vec2<int>   Vec2i;
 typedef Vec3<float> Vec3f;
 typedef Vec3<int>   Vec3i;
+typedef Point<float> Pointf;
+typedef Point<int> Pointi;
 
 template <class t> std::ostream& operator<<(std::ostream& s, Vec2<t>& v) {
 	s << "(" << v.x << ", " << v.y << ")\n";
